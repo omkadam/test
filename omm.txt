@@ -1,0 +1,437 @@
+B) Interfacing RGB LED with Arduino and display of all possible colours.
+
+
+
+
+int redPin= 9;
+
+int greenPin = 6;
+
+int bluePin = 5;
+
+void setup)
+
+{
+
+pinMode(redPin, OUTPUT);
+
+pinMode (greenPin, OUTPUT);
+
+pinMode(bluePin, OUTPUT);
+
+}
+
+void loop()
+
+{
+
+int i,j,k;
+
+for(=0;1<255;i++)
+
+{
+
+analogWrite(redPin, 1);
+
+analogWrite(greenPin, 128);
+
+analogWrite(bluePin, 128);
+
+delay(1000);
+
+} for(¡=0;<255;i++)
+
+{
+
+analogWrite(greenPin, j);
+
+analogWrite (bluePin, 128);
+
+analogWrite(redPin, 128);
+
+delay(1000);
+
+} for(k=0;k<255;k++)
+
+{
+
+analogWrite (bluePin, k);
+
+analogWrite(redPin, 128);
+
+analogWrite(greenPin, 128);
+
+delay(1000);
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+A) Interfacing LED with Arduino with variable duty cycle.
+
+
+
+
+int del = 5; int a = 0;
+
+void setup()
+
+{
+
+pinMode (3, OUTPUT); // LED control pin is 3, a PWM capable pin
+
+}
+
+void loop()
+
+{
+
+for (a = 0; a< 256 ; a++)
+
+{
+
+analogWrite(3, a);
+
+delay(del);
+
+}
+
+for (a = 255; a >= 0; a-)
+
+{
+
+analogWrite(3, a); delay(del);
+
+} delay(200);
+
+}
+
+
+
+
+
+
+
+3. Interfacing of DC motor with Arduino and speed control using PM.
+
+
+
+
+const int ENA = 6; // PWM-enabled digital pin connected to ENA of the motor driver
+
+const int IN1 = 7; // Digital pin connected to IN1 of the motor driver
+
+const int IN2 = 8; // Digital pin connected to IN2 of the motor driver
+
+void setup
+
+{
+
+pinMode (ENA, OUTPUT);
+
+pinMode(IN1, OUTPUT);
+
+pinMode(IN2, OUTPUT);
+
+}
+
+void loop()
+
+{
+
+// Rotate the motor in one direction (forward)
+
+analogWrite(ENA, 255);// Adjust the value (0-255) to control the motor speed digita|Write(IN1, HIGH);
+
+digita/Write(IN2, LOW);
+
+delay(2000);
+
+// Rotate the motor in one direction (backward)
+
+analogWrite(ENA, 255); // Adjust the value (0-255) to control the motor speed digita|Write(IN1, LOW); digita|Write(IN2, HIGH);
+
+delay(2000);
+
+}
+
+
+
+
+
+
+
+******LDR******
+
+int ldrPin = A4; // Analog input pin for LDR int ldrValue; // Variable to store LDR value
+
+void setup()
+
+{
+
+pinMode(ldrPin,INPUT);
+
+Serial.begin(9600); // Initialize serial communication for debugging
+
+}
+
+void loop()
+
+{
+
+int readValue;
+
+float realValue;
+
+readValue = analogRead(ldrPin);
+
+realValue = (5.0/1024.0)*readValue;
+
+Serial.println(realValue);
+
+delay(1000);
+
+}
+
+
+
+
+
+
+
+
+
+
+4.Interfacing of 16×2 LCD with Arduino and displaying information.
+
+
+
+
+#include<LiquidCrystal.h>
+
+LiquidCrystal LCD(12,11,5,4,3,2); // (RS, Enable, D4, D5, D6, D7) void setup ()
+
+{
+
+LCD.begin(16,2);
+
+}
+
+void loop ()
+
+{
+
+LCD.setCursor(0,0); // (0 position, 0 line)
+
+delay(1000);
+
+LCD.print("Yash Tapkir ECE");
+
+delay(1000);
+
+}
+
+
+
+
+
+
+
+*******LM35 TEMPERATURE SENSOR********
+
+ 
+
+void setup() {
+
+  // put your setup code here, to run once:
+
+Serial.begin(9600);
+
+}
+
+ 
+
+void loop() {
+
+  // put your main code here, to run repeatedly:
+
+ unsigned int temp = analogRead(A0);
+
+  temp = map(temp,0,1023,0,500);    //10mV = 1'C
+
+  Serial.println(temp);
+
+  delay(2000);
+
+}
+
+
+
+
+
+
+
+
+
+
+6.Interfacing of Bluetooth module with Arduino and sending commands wirelessly
+
+
+
+
+int LEDpin=13;
+
+void setup()
+
+{
+
+Serial. begin(9600);
+
+pinMode(LEDpin,OUTPUT);
+
+}
+
+void loop()
+
+{
+
+if (Serial.available)>0)
+
+{
+
+char data=Serial. read();
+
+switch(data)
+
+{
+
+case 'a': digitalWrite(LEDpin,HIGH);break; 
+
+case 'd': digita|Write (LEDpin,LOW);break;
+
+case 'r': for(int i=0; i<10; i++) {digita/Write(LEDpin,HIGH); delay(500);
+
+digita/Write (LEDpin,LOW); delay(500);} break;
+
+default: break;
+
+}
+
+}
+
+}
+
+
+
+
+
+
+
+9) Understanding the connectivity of Raspberry-Pi board with IR
+
+sensor
+
+
+
+
+import time
+
+import RPi.GPIO as GPIO
+
+RUNNING = True
+
+HIGH = 1
+
+LOW = 0
+
+DetectPin = 4
+
+led = 8
+
+def InitSystem():
+
+GPIO.setmode (GPIO.BCM)
+
+GPIO.setup(DetectPin,GPIO.IN,pull_up_down=
+
+GPIO.PUD_UP)
+
+GPIO.setup(led,GPIO.OUT)
+
+return
+
+
+
+
+def DetectPerson():
+
+while True:
+
+input_state = GPIO.input(DetectPin)
+
+time.sleep(0.3)
+
+if input state == 0:
+
+return LOW
+
+else:
+
+return HIGH
+
+try:
+
+
+
+
+print ("InCounting using IR LED\n")
+
+print (“———————————-\n”)
+
+InitSystem()
+
+count =0;
+
+while RUNNING:
+
+state = DetectPerson()
+
+if state == LOW:
+
+count+=1
+
+print ("person count =%d" %count)
+
+GPIO.output(led,LOW)
+
+time.sleep(1)
+
+GPIO.output(led,HIGH)
+
+# If CTRL+C is pressed the main loop is broken
+
+except KeyboardInterrupt:
+
+RUNNING = False
+
+#Actions under 'finally' will always be called
+
+finally:
+
+# Stop and finish cleanly so the pins
+
+# are available to be used again
+
+GPIO.cleanup()
